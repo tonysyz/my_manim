@@ -1,2 +1,3 @@
 # my_manim
 My manim code...
+要运行文件生成视频需要manim及其环境的安装和配置。完成后将文件复制到manim库文件夹中，从该目录的pwoershell或者cmd中输入命令:python -m manim Object.py Class -pl
