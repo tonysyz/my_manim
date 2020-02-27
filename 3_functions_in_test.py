@@ -45,16 +45,19 @@ class Func(GraphScene):
             r"$e(1-1)+2$\\",
             r"${f}'(1)=e$"
         ).next_to(t2,DOWN)
-        t4[2].shift(LEFT)
+        t4[2].shift(LEFT).shift(DOWN)
         self.play(Write(t4))
         t5 = TextMobject(r"2").next_to(t4[0],RIGHT)
         t6 = TexMobject(
             r"f(1)=",
             r"ae\ln1+{{b{e}^0}\over{1}}=b"
         ).next_to(t5,RIGHT*3)
-        t7 = TexMobject(r"f'(x)={{{{ae^x}\over{x}}+{ae}^{x}\ln {x}}+ ",r"{{{bxe^{x-1}-be^{x-1}}\over {x^2}}}}").next_to(t6,DOWN).shift(RIGHT)
-        t8 = TexMobject(r"f'(x)={{{{ae^x}\over{x}}+{ae}^{x}\ln {x}}+",r"{{{be}^{x-1}(x-1)}\over{x^2}}").next_to(t6,DOWN).shift(RIGHT)
+        t7 = TexMobject(r"f'(x)={{{{ae^x}\over{x}}+{ae}^{x}\ln {x}}+ ",r"{{{bxe^{x-1}-be^{x-1}}\over {x^2}}}}").next_to(t4[2],RIGHT)
+        t8 = TexMobject(r"f'(x)={{{{ae^x}\over{x}}+{ae}^{x}\ln {x}}+",r"{{{be}^{x-1}(x-1)}\over{x^2}}").next_to(t4[2],RIGHT)
         self.play(ReplacementTransform(t4[1],t5))
         self.play(Write(t6))
         self.play(Write(t7))
         self.play(ReplacementTransform(t7[1],t8[1]))
+        t9 = TexMobject(r"\Rightarrow", r" a=1\\b=2").next_to(t8,DOWN)
+        t9[0].shift(DOWN*0.45)
+        self.play(Write(t9))
