@@ -61,3 +61,59 @@ class Func(GraphScene):
         t9 = TexMobject(r"\Rightarrow", r" a=1\\b=2").next_to(t8,DOWN)
         t9[0].shift(DOWN*0.45)
         self.play(Write(t9))
+        group1 = VGroup(t2, t4[0], t5, t6, t4[2], t7[0], t8[1], t9)
+        self.play(FadeOut(group1))
+        t3.next_to(t1,DOWN).shift(LEFT*3.6)
+        self.play(Write(t3))
+        s1 = TexMobject(r"f(x)=", r"(", r"e^x\ln x + {{2e^{x-1}}\over {x}}", r")", r">1").next_to(t3,DOWN)
+        s2 = TexMobject(r"\cdot", r"{{x}\over{e^x}}").next_to(s1[4],RIGHT)
+        s3 = TexMobject(r"{{x}\over{e^x}}" ,r"\cdot").next_to(s1[1],LEFT)
+        group2 = VGroup(s1[0], s1[2], s1[4])
+        group3 = VGroup(s1[1], s1[3])
+        self.play(Write(group2))
+        self.play(FadeOut(s1[0]))
+        self.play(Write(group3))
+        self.play(Write(s2))
+        self.play(Write(s3))
+        s4 = TexMobject(r"{x\ln {x} +{{2}\over{e}}}", r" > {{x}\over {e^x}}")
+        group4 = VGroup(s3, s1[2], s1[3], s1[1])
+        group5 = VGroup(s2, s1[4])
+        self.play(
+            ReplacementTransform(group4, s4[0]),
+            ReplacementTransform(group5, s4[1])
+        )
+        s5 = TexMobject(
+            r"h(x)=",
+            r"x\ln x +{2 \over e}"
+        ).move_to(np.array([-3,1,0]))
+        s6 = TexMobject(
+            r"g(x)=",
+            r"{x\over e^x}"
+        ).move_to(np.array([-3.8,0,0]))
+        self.play(Write(s5[0]))
+        self.play(ReplacementTransform(s4[0], s5[1]))
+        self.play(Write(s6[0]))
+        self.play(ReplacementTransform(s4[1], s6[1]))
+        s5_1 = TexMobject(
+            r"h'(x)=",
+            r"(x\ln x +{2 \over e})'"
+        ).move_to(np.array([-3,1,0]))
+        s6_1 = TexMobject(
+            r"g'(x)=",
+            r"({x\over e^x})'"
+        ).move_to(np.array([-3.8,0,0]))
+        self.play(ReplacementTransform(s5[0],s5_1[0]))
+        self.play(ReplacementTransform(s6[0],s6_1[0]))
+        self.play(ReplacementTransform(s5[1],s5_1[1]))
+        self.play(ReplacementTransform(s6[1],s6_1[1]))
+        s5_2 = TexMobject(
+            r"h'(x)=",
+            r"(x\ln x)' +({2 \over e})'"
+        ).move_to(np.array([-3,1,0]))
+        self.play(ReplacementTransform(s5_1[1],s5_2[1]))
+        s5_3 = TexMobject(
+            r"h'(x)=",
+            r"(x\ln x)'",
+            r"+{2 \over e}"
+        ).move_to(np.array([-3,1,0]))
+        self.play(ReplacementTransform(s5_2[1],s5_3[1]))
