@@ -1,7 +1,19 @@
 from manimlib.imports import *
+import math
 
 class Func(GraphScene):
+    CONFIG = {
+        'x_min':-8,
+        'x_max':8,
+        "x_axis_width":16,
+        'y_min':-4,
+        'y_max':4,
+        "y_axis_height": 8,
+        'graph_origin':ORIGIN,
+        'axes_color':WHITE,
+    }
     def construct(self):
+        e = math.e
         text1 = TextMobject("大家好,在上期视频中,我们讨论了六个函数:").to_edge(UP,buff=MED_LARGE_BUFF)
         text2 = TexMobject(r'xe^x').next_to(text1,DOWN*2)
         text3 = TexMobject(r'\frac{e^x}{x}').next_to(text2, RIGHT*3)
@@ -117,3 +129,42 @@ class Func(GraphScene):
             r"+{2 \over e}"
         ).move_to(np.array([-3,1,0]))
         self.play(ReplacementTransform(s5_2[1],s5_3[1]))
+        s5_4 = TexMobject(
+            r"h'(x)=",
+            r"1+\ln x",
+            r"+{2 \over e}"
+        ).move_to(np.array([-3,1,0]))
+        self.play(ReplacementTransform(s5_3[1], s5_4[1]))
+        s6_2 = TexMobject(
+            r"g'(x)=",
+            r"{{1-x}\over {e^x}}"
+        ).move_to(np.array([-3.8,0,0]))
+        self.play(ReplacementTransform(s6_1[1], s6_2[1]))
+        group6 = VGroup(t1, t3, s5_1[0], s6_1[0], s5_4[1], s6_2[1])
+        self.play(FadeOut(group6))
+        self.wait()
+        self.setup_axes(animate=True)
+        plane = NumberPlane()
+        self.play(ShowCreation(plane))
+        def ln(x):
+            return math.log(x,e)
+        hx = self.get_graph(lambda x: x * ln(x) + 2/e, x_min=0.02)
+        hx_label = self.get_graph_label(hx,label=r"h(x)=x \ln x + {2 \over e}")
+        h_x = self.get_graph(lambda x: ln(x)+1, x_min=0.02)
+        h_x_label = self.get_graph_label(h_x, label=r"h'(x)=\ln x + 1")
+        gx = self.get_graph(lambda x: x/(e**x))
+        gx_label = self.get_graph_label(gx, label=r"g(x)={x \over {e^x}}")
+        g_x = self.get_graph(lambda x:(x-1)/(e**x))
+        g_x_label = self.get_graph_label(g_x, label=r"g'(x)={{x-1}\over{e^x}}")
+        self.play(ShowCreation(hx))
+        self.play(ShowCreation(hx_label))
+        self.play(ShowCreation(h_x))
+        self.play(ShowCreation(h_x_label))
+        self.play(ShowCreation(gx))
+        self.play(ShowCreation(gx_label))
+        self.play(ShowCreation(g_x))
+        self.play(ShowCreation(g_x_label))
+
+
+
+        
