@@ -328,6 +328,6 @@ class End(Scene):
 
 class Result(Scene):
     def construct(self):
-        text = TextMobject(r"总结:\\$ab$的正负决定三叉戟的“对勾”的左$(ab<0)$右$(ab>0)$,\\$b$的正负决定了三叉戟的方向的上(b>0)下(b<0).")
+        text = TextMobject(r"总结:\\$ab$的正负决定三叉戟的“对勾”的左$(ab<0)$右$(ab>0)$,\\$b$的正负决定了三叉戟的方向的上$(b>0)$下$(b<0)$.")
         self.play(Write(text), run_time=3)
         self.wait(3)
